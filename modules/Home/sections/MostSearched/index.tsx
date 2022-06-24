@@ -23,7 +23,7 @@ const MostSearchedBreeds = () => {
         <h3>
           {breeds.length - 1}+ Breeds For you <br /> to discover
         </h3>
-        <StyledLink href="/top-breeds" text="See more" />
+        <StyledLink href="" text="See more" />
       </TextContent>
 
       <BreedCartsContainer>

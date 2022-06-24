@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
 
 export default function useMediaQuery(query: string) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [matches, setMatches] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const handleMediaQueryChange = (e: any) => {
-      setIsMobile(e.matches);
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) {
+      setMatches(media.matches);
     }
-    mediaQuery.addListener(handleMediaQueryChange);
-    return () => {
-      mediaQuery.removeListener(handleMediaQueryChange);
-    }
-  }, [query]);
+    const listener = () => setMatches(media.matches);
+    window.addEventListener("resize", listener);
+    return () => window.removeEventListener("resize", listener);
+  }, [matches, query]);
 
-  return isMobile;
+  return matches;
 }
