@@ -1,15 +1,14 @@
-import { BreedCartsContainer, Head, TextContent, Wrapper } from "./styled";
 import useBreeds from "@modules/Home/hooks/useBreeds";
 import useGetRandomsBreeds from "../../hooks/useGetRamdomsBreeds";
 import BreedCart from "@modules/Home/components/BreedCart";
 import StyledLink from "@components/Navigation/Link";
+import { BreedCartsContainer, Head, TextContent, Wrapper } from "./styled";
 
 const MostSearchedBreeds = () => {
   const { breeds } = useBreeds();
   const { randomBreeds } = useGetRandomsBreeds();
-  const isThereRandomBreeds = randomBreeds.length > 0;
 
-  if (!isThereRandomBreeds || !breeds || breeds.length === 0)
+  if (randomBreeds.length === 0 || !breeds || breeds.length === 0)
     return <div>Loading...</div>;
 
   return (
